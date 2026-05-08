@@ -1925,5 +1925,19 @@
     "toolName": "delete-my-calendar-permission",
     "scopes": ["Calendars.ReadWrite"],
     "llmTip": "Revokes a calendar share or delegate access. Get the permission id via list-my-calendar-permissions. Permissions where isRemovable=false (e.g. the implicit 'My Organization' default) cannot be deleted — Graph returns an error."
+  },
+  {
+    "pathPattern": "/me/contactFolders/{contactFolder-id}/childFolders",
+    "method": "get",
+    "toolName": "list-contact-folder-child-folders",
+    "scopes": ["Contacts.Read"],
+    "llmTip": "Lists immediate sub-folders under a given contact folder. Returns id, displayName, parentFolderId. Use list-contact-folders to discover top-level folders, then this tool to traverse one level deeper. Supports $filter, $top, $orderby. Note: contact folders are typically a flat list in Outlook clients, but Graph allows nesting via this endpoint."
+  },
+  {
+    "pathPattern": "/me/contactFolders/{contactFolder-id}/childFolders",
+    "method": "post",
+    "toolName": "create-contact-child-folder",
+    "scopes": ["Contacts.ReadWrite"],
+    "llmTip": "Creates a sub-folder under an existing contact folder. Body: { displayName: 'Sub-folder name' }. Names must be unique among siblings under the same parent. Use list-contact-folders to discover the parent id. The returned contactFolder has its own id usable with update-contact-folder, delete-contact-folder, list-contact-folder-contacts, and create-contact-in-folder — contactFolder ids are mailbox-unique regardless of nesting depth."
   }
 ]
