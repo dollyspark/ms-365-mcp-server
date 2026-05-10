@@ -19,4 +19,5 @@ COPY --from=builder /app/package*.json ./
 ENV NODE_ENV=production
 RUN npm ci --ignore-scripts --omit=dev
 
-ENTRYPOINT ["node", "dist/index.js", "--http", "3000", "--org-mode", "--preset", "all"]
+ENTRYPOINT ["node", "dist/index.js", "--http", "3000", "--org-mode", "--preset", "all", "-v"]
+
